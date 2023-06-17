@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import DbFacade from "../data/dbFacade.js";
+import DbFacade from "../../data/dbFacade.js";
 
 const dbFacade = new DbFacade();
 

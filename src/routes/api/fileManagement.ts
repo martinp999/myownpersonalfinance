@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import path from "path";
 import fileupload, { UploadedFile } from "express-fileupload";
 import dotenv from "dotenv";
-import DbFacade from "../data/dbFacade.js";
+import DbFacade from "../../data/dbFacade.js";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 
