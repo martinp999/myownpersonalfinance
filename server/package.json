@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "@types/express-fileupload": "^1.4.1",
+    "@types/morgan": "^1.9.4",
     "dayjs": "^1.11.8",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "morgan": "^1.10.0",
     "mysql2": "^3.3.3"
   },
   "devDependencies": {
