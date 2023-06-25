@@ -4,27 +4,28 @@ import "./App.css";
 
 export default class App extends React.Component {
   state = {
-    accounts: [],
+    transactions: [],
   };
   componentDidMount() {
-    axios.get("/api/accounts").then((response) => {
-      this.setState({ accounts: response.data });
+    axios.get("/api/transactions").then((response) => {
+      this.setState({ transactions: response.data });
     });
   }
 
   render() {
-    const { accounts: accounts } = this.state;
+    const { transactions: transactions } = this.state;
     return (
       <div>
-        <ul className="accounts">
-          {accounts.map((account) => (
-            <li className="account">
-              <p>
-                <strong>Name:</strong> {account.name}
-              </p>
-            </li>
+        <table className="transactions">
+          {transactions.map((transaction) => (
+            <tr>
+              <td>{transaction.date}</td>
+              <td>{transaction.description}</td>
+              <td>{transaction.creditAmount}</td>
+              <td>{transaction.debitAmount}</td>
+            </tr>
           ))}
-        </ul>
+        </table>
       </div>
     );
   }

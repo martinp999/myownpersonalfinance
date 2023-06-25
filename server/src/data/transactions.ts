@@ -1,6 +1,5 @@
 import { Connection } from "mysql2/promise";
-import DbFacade from "./dbFacade";
-import { TransactionType } from "../types/transaction";
+import { TransactionType, ITransaction } from "../types/transaction";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 import DataBase from "./dataBase.js";
@@ -20,5 +19,17 @@ export default class Transactions extends DataBase {
         transaction.creditAmount,
       ]
     );
+  }
+
+  async getAll(): Promise<TransactionType[]> {
+    const conn: Connection = await this.getConnection();
+    const [res] = await conn.execute<ITransaction[]>(`
+      select idAccount as account,
+      date,
+      description,
+      credit as creditAmount,
+      debit as debitAmount
+      from transactions;`);
+    return res;
   }
 }
