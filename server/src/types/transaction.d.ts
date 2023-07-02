@@ -3,7 +3,7 @@ import { RowDataPacket } from "mysql2";
 
 export type TransactionType = {
   account: number;
-  date: dayjs;
+  date: string;
   description: string;
   debitAmount: number;
   creditAmount: number;
@@ -11,7 +11,7 @@ export type TransactionType = {
 
 export interface ITransaction extends RowDataPacket {
   account: number;
-  date: dayjs;
+  date: string;
   description: string;
   debitAmount: number;
   creditAmount: number;
