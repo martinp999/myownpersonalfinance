@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import transactionFacade from "../facade/transactions";
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setTransactions(await transactionFacade.getAll());
+      const response = await fetch("/api/transactions");
+      setTransactions(await response.json());
     };
     fetchData().catch(console.error);
   }, []);

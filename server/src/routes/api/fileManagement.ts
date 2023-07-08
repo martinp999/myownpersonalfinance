@@ -83,13 +83,13 @@ const processStGeorgeSavings = async (data: Buffer) => {
 
       console.log(`${i}, ${date}, ${description}, ${debitAmt}, ${creditAmt}`);
 
-      // await dbFacade.transactions.insert({
-      //   account: 1,
-      //   date: date,
-      //   description: description,
-      //   debitAmount: debitAmt,
-      //   creditAmount: creditAmt,
-      // });
+      await dbFacade.transactions.insert({
+        account: 1,
+        date: date,
+        description: description,
+        debitAmount: debitAmt,
+        creditAmount: creditAmt,
+      });
     }
   }
 };
