@@ -12,6 +12,13 @@ export default function Transactions() {
     fetchData().catch(console.error);
   }, []);
 
+  const currencyFormatter = new Intl.NumberFormat("en-AU", {
+    style: "decimal",
+    minimumIntegerDigits: 1,
+    minimumFractionDigits: 2,
+    currency: "AUD",
+  });
+
   return (
     <div>
       <table className="transactions">
@@ -19,8 +26,12 @@ export default function Transactions() {
           <tr>
             <td>{moment(transaction.date).format("DD/MM/YYYY")}</td>
             <td>{transaction.description}</td>
-            <td>{transaction.creditAmount}</td>
-            <td>{transaction.debitAmount}</td>
+            <td className="currency">
+              {currencyFormatter.format(transaction.creditAmount)}
+            </td>
+            <td className="currency">
+              {currencyFormatter.format(transaction.debitAmount)}
+            </td>
           </tr>
         ))}
       </table>
