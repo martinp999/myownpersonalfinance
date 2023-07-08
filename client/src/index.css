@@ -23,3 +23,35 @@ code {
 .transactions tr:hover {
   background-color: #ddd;
 }
+
+.transactions td,
+.transactions th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.transactions {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.transactions thead th {
+  position: sticky;
+  top: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+
+#transaction-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 1200px;
+  height: 600px;
+  overflow: auto;
+  border: 2px solid #ddd;
+}

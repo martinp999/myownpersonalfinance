@@ -20,8 +20,16 @@ export default function Transactions() {
   });
 
   return (
-    <div>
-      <table className="transactions">
+    <table className="transactions">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Credit</th>
+          <th>Debit</th>
+        </tr>
+      </thead>
+      <tbody>
         {transactions.map((transaction) => (
           <tr>
             <td>{moment(transaction.date).format("DD/MM/YYYY")}</td>
@@ -34,7 +42,7 @@ export default function Transactions() {
             </td>
           </tr>
         ))}
-      </table>
-    </div>
+      </tbody>
+    </table>
   );
 }
