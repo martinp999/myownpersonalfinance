@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment/moment";
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
@@ -16,7 +17,7 @@ export default function Transactions() {
       <table className="transactions">
         {transactions.map((transaction) => (
           <tr>
-            <td>{transaction.date}</td>
+            <td>{moment(transaction.date).format("DD/MM/YYYY")}</td>
             <td>{transaction.description}</td>
             <td>{transaction.creditAmount}</td>
             <td>{transaction.debitAmount}</td>
