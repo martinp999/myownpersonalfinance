@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import moment from "moment/moment";
 
-export default function Transactions() {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/transactions");
-      setTransactions(await response.json());
-    };
-    fetchData().catch(console.error);
-  }, []);
-
+export default function TransactionsView({ transactions }) {
   const currencyFormatter = new Intl.NumberFormat("en-AU", {
     style: "decimal",
     minimumIntegerDigits: 1,

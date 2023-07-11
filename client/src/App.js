@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Transactions from "./components/Transactions";
+import CategoryManager from "./components/CategoryManager";
 
 export default function App() {
   return (
     <div id="transaction-container">
-      <Transactions />
+      <CategoryManager />
     </div>
   );
 }
