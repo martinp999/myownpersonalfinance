@@ -5,6 +5,10 @@ const dbFacade = new DbFacade();
 
 export const transactionsRouter = express.Router();
 
+transactionsRouter.get("/", async function (req: Request, res: Response) {
+  res.json(await dbFacade.transactions.getAll());
+});
+
 transactionsRouter.post("/", async function (req: Request, res: Response) {
   await dbFacade.transactions.insert({
     account: req.body.account,
