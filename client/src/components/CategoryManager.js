@@ -16,18 +16,38 @@ export default function CategoryManager() {
     fetchData().catch(console.error);
   }, []);
 
+  const resetTransactions = () => {
+    setTransView(transactions);
+  };
+
   const filterTransactions = () => {
-    setTransView(
-      transactions.filter((t) => {
-        return t.description.includes("Telstra");
-      })
-    );
+    let elem = document.getElementById("regexp");
+    if (validateRegExp(elem.value)) {
+      let r = new RegExp(elem.value);
+      setTransView(
+        transactions.filter((t) => {
+          return r.test(t.description);
+        })
+      );
+    }
+  };
+
+  const validateRegExp = (r) => {
+    let isValid = true;
+    try {
+      new RegExp(r);
+    } catch (e) {
+      isValid = false;
+    }
+    if (!isValid) alert("Invalid regular expression");
+    return isValid;
   };
 
   return (
     <div>
       <input id="regexp"></input>
-      <button onClick={filterTransactions}>Click</button>
+      <button onClick={filterTransactions}>Apply</button>
+      <button onClick={resetTransactions}>Reset</button>
       <TransactionsView transactions={transView} />
     </div>
   );
