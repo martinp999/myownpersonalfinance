@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
 import TransactionsView from "../view/TransactionsView";
 
 export default function CategoryManager() {
@@ -46,8 +47,8 @@ export default function CategoryManager() {
   return (
     <div>
       <input id="regexp"></input>
-      <button onClick={filterTransactions}>Apply</button>
-      <button onClick={resetTransactions}>Reset</button>
+      <Button onClick={filterTransactions}>Apply</Button>
+      <Button onClick={resetTransactions}>Reset</Button>
       <TransactionsView transactions={transView} />
     </div>
   );
