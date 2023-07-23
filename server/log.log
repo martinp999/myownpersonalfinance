@@ -1,0 +1,5 @@
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02","timestamp":"2023-07-21T22:35:55.746Z"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}

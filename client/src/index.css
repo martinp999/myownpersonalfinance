@@ -47,9 +47,9 @@ code {
 }
 
 #transaction-container {
-  position: fixed;
+  /* position: fixed;
   top: 10px;
-  left: 10px;
+  left: 10px; */
   width: 1200px;
   height: 600px;
   overflow: auto;
