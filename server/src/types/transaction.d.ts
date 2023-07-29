@@ -16,3 +16,19 @@ export interface ITransaction extends RowDataPacket {
   debitAmount: number;
   creditAmount: number;
 }
+
+export type TrxSortType = {
+  description: string;
+  account: string;
+  count: number;
+  debitAmount: number;
+  creditAmount: number;
+};
+
+export interface ITrxSort extends RowDataPacket {
+  description: string;
+  account: string;
+  count: number;
+  debitAmount: number;
+  creditAmount: number;
+}

@@ -15,6 +15,18 @@ transactionsRouter.get("/", async function (req: Request, res: Response) {
   }
 });
 
+transactionsRouter.get(
+  "/sortable",
+  async function (req: Request, res: Response) {
+    try {
+      res.json(await dbFacade.transactions.getDistinctDescriptions());
+    } catch (error) {
+      logger.error(error);
+      res.status(500).send("something went wrong, check logs");
+    }
+  }
+);
+
 transactionsRouter.post("/", async function (req: Request, res: Response) {
   try {
     await dbFacade.transactions.insert({

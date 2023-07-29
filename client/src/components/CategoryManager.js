@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Stack,
-  Form,
-  Button,
-  FormControl,
-  Row,
-  Container,
-} from "react-bootstrap";
+import { Stack, Form, Button, Row, Container, Col } from "react-bootstrap";
 import TransactionsView from "../view/TransactionsView";
 
 export default function CategoryManager() {
@@ -54,17 +47,21 @@ export default function CategoryManager() {
   return (
     <div>
       <Container>
-        <Stack direction="horizontal" gap={2}>
-          <Form>
-            <Form.Control type="text" id="regexp"></Form.Control>
-          </Form>
-          <Button variant="primary" onClick={filterTransactions}>
-            Apply
-          </Button>
-          <Button variant="primary" onClick={resetTransactions}>
-            Reset
-          </Button>
-        </Stack>
+        <Row>
+          <Col>
+            <Stack direction="horizontal" gap={2}>
+              <Form>
+                <Form.Control type="text" id="regexp"></Form.Control>
+              </Form>
+              <Button variant="primary" onClick={filterTransactions}>
+                Test
+              </Button>
+              <Button variant="primary" onClick={resetTransactions}>
+                Reset
+              </Button>
+            </Stack>
+          </Col>
+        </Row>
       </Container>
       <Container>
         <TransactionsView transactions={transView} />
