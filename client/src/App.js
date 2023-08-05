@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./view/Home";
 import { Stack } from "react-bootstrap";
 import Accounts from "./components/Accounts";
+import TrxUpload from "./view/TrxUpload";
 
 export default function App() {
   return (
@@ -14,12 +15,14 @@ export default function App() {
           <Link to="/">Home</Link>
           <Link to="/categorymanager">Category Manager</Link>
           <Link to="/accounts">Accounts</Link>
+          <Link to="/trxupload">Upload</Link>
         </Stack>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorymanager" element={<CategoryManager />} />
         <Route path="/accounts" element={<Accounts />} />
+        <Route path="/trxupload" element={<TrxUpload />} />
       </Routes>
     </BrowserRouter>
   );
