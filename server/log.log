@@ -3,3 +3,4 @@
 {"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
 {"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
 {"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Table 'mopf.categorie' doesn't exist","sql":"\n      select * from categorie;","sqlMessage":"Table 'mopf.categorie' doesn't exist","sqlState":"42S02"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"error","message":"Data too long for column 'colourPrimary' at row 1","sql":"INSERT INTO `categories` (`name`, `colourPrimary`, `colourSecondary`) VALUES (?, ?, ?);","sqlMessage":"Data too long for column 'colourPrimary' at row 1","sqlState":"22001"}

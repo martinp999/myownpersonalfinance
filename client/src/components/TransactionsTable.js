@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment/moment";
 
-export default function TransactionsView({ transactions }) {
+export default function TransactionsTable({ transactions }) {
   const currencyFormatter = new Intl.NumberFormat("en-AU", {
     style: "decimal",
     minimumIntegerDigits: 1,
@@ -14,6 +14,7 @@ export default function TransactionsView({ transactions }) {
       <table className="transactions">
         <thead>
           <tr>
+            <th>Account</th>
             <th>Date</th>
             <th>Description</th>
             <th>Credit</th>
@@ -23,6 +24,7 @@ export default function TransactionsView({ transactions }) {
         <tbody>
           {transactions.map((transaction) => (
             <tr>
+              <td>{transaction.accountName}</td>
               <td>{moment(transaction.date).format("DD/MM/YYYY")}</td>
               <td>{transaction.description}</td>
               <td className="currency">

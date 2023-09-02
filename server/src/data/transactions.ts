@@ -17,7 +17,7 @@ export default class Transactions extends DataBase {
     const res = await conn.execute(
       "INSERT INTO `transactions` (`idAccount`, `date`, `description`, `debit`, `credit`) VALUES (?, ?, ?, ?, ?);",
       [
-        transaction.account,
+        transaction.accountId,
         transaction.date.format("YYYY-MM-DD"),
         transaction.description,
         transaction.debitAmount,
@@ -29,12 +29,15 @@ export default class Transactions extends DataBase {
   async getAll(): Promise<TransactionType[]> {
     const conn: Connection = await this.getConnection();
     const [res] = await conn.execute<ITransaction[]>(`
-      select idAccount as account,
-      date,
-      description,
-      credit as creditAmount,
-      debit as debitAmount
-      from transactions;`);
+      select a.idAccount as accountId,
+	    a.name as accountName,
+      t.date,
+      t.description,
+      t.credit as creditAmount,
+      t.debit as debitAmount
+      from transactions t
+      inner join accounts a on a.idAccount = t.idAccount
+      order by date DESC;`);
     return res;
   }
 

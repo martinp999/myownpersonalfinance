@@ -83,7 +83,7 @@ const processFile = async (
       console.log(`${i}, ${date}, ${description}, ${debitAmt}, ${creditAmt}`);
 
       await dbFacade.transactions.insert({
-        account: accountId,
+        accountId: accountId,
         date: date,
         description: description,
         debitAmount: debitAmt,

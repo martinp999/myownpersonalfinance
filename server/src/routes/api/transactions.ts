@@ -30,7 +30,7 @@ transactionsRouter.get(
 transactionsRouter.post("/", async function (req: Request, res: Response) {
   try {
     await dbFacade.transactions.insert({
-      account: req.body.account,
+      accountId: req.body.account,
       date: req.body.date,
       description: req.body.description,
       debitAmount: req.body.debitAmount,
