@@ -32,4 +32,13 @@ export default class Categories extends DataBase {
       select * from categories;`);
     return res;
   }
+
+  async get(categoryId: number): Promise<CategoryType> {
+    const conn: Connection = await this.getConnection();
+    const [res] = await conn.execute<ICategory[]>(
+      `select * from categories where idCategory = ?;`,
+      [categoryId]
+    );
+    return res[0];
+  }
 }

@@ -15,6 +15,18 @@ categoriesRouter.get("/", async function (req: Request, res: Response) {
   }
 });
 
+categoriesRouter.get(
+  "/:categoryId",
+  async function (req: Request, res: Response) {
+    try {
+      res.json(await dbFacade.categories.get(Number(req.params.categoryId)));
+    } catch (error) {
+      logger.error(error);
+      res.status(500).send("something went wrong, check logs");
+    }
+  }
+);
+
 categoriesRouter.post("/", async function (req: Request, res: Response) {
   try {
     await dbFacade.categories.create({
