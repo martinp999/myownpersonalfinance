@@ -4,6 +4,7 @@ import { useHref } from "react-router-dom";
 
 export default function Categories() {
   const thisHref = useHref();
+
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +14,7 @@ export default function Categories() {
     };
     fetchData().catch(console.error);
   }, []);
+
   return (
     <>
       <ListGroup>

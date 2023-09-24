@@ -2,6 +2,7 @@ import mysql, { Connection } from "mysql2/promise";
 import Transactions from "./transactions.js";
 import Accounts from "./accounts.js";
 import Categories from "./categories.js";
+import Payees from "./payees.js";
 
 export default class DbFacade {
   private _connection: Connection | null = null;
@@ -28,5 +29,9 @@ export default class DbFacade {
 
   get categories() {
     return new Categories(this._getConnection, this);
+  }
+
+  get payees() {
+    return new Payees(this._getConnection, this);
   }
 }
