@@ -5,6 +5,7 @@ import TagBadgeElement from "../elements/TagBadgeElement";
 export default function CategoryCreateComponent({
   showCategoryCreate,
   handleCloseCategoryCreate,
+  refreshCategoryList,
 }) {
   const [categoryName, setCategoryName] = useState([]);
   const [categoryPrimaryColour, setCategoryPrimaryColour] = useState("#000000");
@@ -26,6 +27,7 @@ export default function CategoryCreateComponent({
       }),
     });
     if (response.ok) {
+      handleCloseCategoryCreate();
       setShowSuccessModal(true);
     }
   };
@@ -78,6 +80,7 @@ export default function CategoryCreateComponent({
         categoryName={categoryName}
         categoryPrimaryColour={categoryPrimaryColour}
         categorySecondaryColour={categorySecondaryColour}
+        refreshCategoryList={refreshCategoryList}
       />
     </>
   );
@@ -88,8 +91,12 @@ export default function CategoryCreateComponent({
     categoryName,
     categoryPrimaryColour,
     categorySecondaryColour,
+    refreshCategoryList,
   }) {
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+      setShow(false);
+      refreshCategoryList();
+    };
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

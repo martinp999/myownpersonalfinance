@@ -4,12 +4,12 @@ export type PayeeType = {
   id: number;
   name: string;
   description: string;
-  categoryId: number;
+  idCategory: number;
 };
 
 export interface IPayee extends RowDataPacket {
   id: number;
   name: string;
   description: string;
-  categoryId: number;
+  idCategory: number;
 }
