@@ -16,6 +16,20 @@ payeesRouter.get("/", async function (req: Request, res: Response) {
   }
 });
 
+payeesRouter.get("/:payeeId", async function (req: Request, res: Response) {
+  try {
+    res.json(
+      await dbFacade.payees.get(
+        Number(req.params.categoryId),
+        Number(req.params.payeeId)
+      )
+    );
+  } catch (error) {
+    logger.error(error);
+    res.status(500).send("something went wrong, check logs");
+  }
+});
+
 payeesRouter.post("/", async function (req: Request, res: Response) {
   try {
     await dbFacade.payees.create(

@@ -39,10 +39,7 @@ export default function Categories() {
 
       <ListGroup>
         {categories.map((category) => (
-          <ListGroup.Item
-            action
-            href={thisHref + "/" + category.idCategory + "/"}
-          >
+          <ListGroup.Item action href={thisHref + "/" + category.idCategory}>
             {category.name}
           </ListGroup.Item>
         ))}

@@ -9,6 +9,7 @@ import Categories from "./view/Categories";
 import Accounts from "./components/Accounts";
 import TrxUpload from "./view/TrxUpload";
 import Category from "./view/Category";
+import Payee from "./view/Payee";
 
 export default function App() {
   return (
@@ -27,6 +28,10 @@ export default function App() {
         <Route path="/transactionmanager" element={<TransactionManager />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:cat_id" element={<Category />} />
+        <Route
+          path="/categories/:cat_id/payees/:payee_id"
+          element={<Payee />}
+        />
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/trxupload" element={<TrxUpload />} />
       </Routes>

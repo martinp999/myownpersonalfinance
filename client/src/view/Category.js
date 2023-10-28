@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, ListGroup, Stack } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useHref, useParams } from "react-router-dom";
 import PayeeCreateComponent from "../components/PayeeCreate";
 
 export default function Category() {
+  const thisHref = useHref();
   const { cat_id } = useParams();
 
   const [category, setCategory] = useState([]);
@@ -48,7 +49,9 @@ export default function Category() {
       </Stack>
       <ListGroup>
         {payees.map((payee) => (
-          <ListGroup.Item action>{payee.name}</ListGroup.Item>
+          <ListGroup.Item action href={thisHref + "/payees/" + payee.id}>
+            {payee.name}
+          </ListGroup.Item>
         ))}
       </ListGroup>
     </>

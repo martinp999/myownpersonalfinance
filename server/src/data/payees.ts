@@ -1,5 +1,10 @@
 import { Connection } from "mysql2/promise";
-import { PayeeType, IPayee } from "../types/payee";
+import {
+  PayeeType,
+  IPayee,
+  PayeeDetailType,
+  IPayeeDetail,
+} from "../types/payee";
 import DataBase from "./dataBase.js";
 
 export default class Payees extends DataBase {
@@ -22,5 +27,17 @@ export default class Payees extends DataBase {
       [categoryId]
     );
     return res;
+  }
+
+  async get(categoryId: number, payeeId: number): Promise<PayeeDetailType> {
+    const conn: Connection = await this.getConnection();
+    const [res] = await conn.execute<IPayeeDetail[]>(
+      `select p.*, c.name as catName 
+        from payees p
+	      inner join categories c on p.idCategory = c.idCategory 
+        where p.idCategory = ? and p.id = ?;`,
+      [categoryId, payeeId]
+    );
+    return res[0];
   }
 }

@@ -7,9 +7,17 @@ export type PayeeType = {
   idCategory: number;
 };
 
+export type PayeeDetailType = PayeeType & {
+  catName: string;
+};
+
 export interface IPayee extends RowDataPacket {
   id: number;
   name: string;
   description: string;
   idCategory: number;
+}
+
+export interface IPayeeDetail extends IPayee {
+  catName: string;
 }
