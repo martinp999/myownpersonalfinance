@@ -10,6 +10,7 @@ import Accounts from "./components/Accounts";
 import TrxUpload from "./view/TrxUpload";
 import Category from "./view/Category";
 import Payee from "./view/Payee";
+import SubCategory from "./view/SubCategory";
 
 export default function App() {
   return (
@@ -29,7 +30,11 @@ export default function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:cat_id" element={<Category />} />
         <Route
-          path="/categories/:cat_id/payees/:payee_id"
+          path="/categories/:cat_id/subcategories/:subcat_id"
+          element={<SubCategory />}
+        />
+        <Route
+          path="/categories/:cat_id/subcategories/:subcat_id/payees/:payee_id"
           element={<Payee />}
         />
         <Route path="/accounts" element={<Accounts />} />

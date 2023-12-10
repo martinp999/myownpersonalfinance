@@ -9,34 +9,38 @@ import DataBase from "./dataBase.js";
 
 export default class Payees extends DataBase {
   async create(
-    idCategory: number,
+    idSubCategory: number,
     payeeName: string,
     payeeDescription?: string
   ) {
     const conn: Connection = await this.getConnection();
     const res = await conn.execute(
-      "INSERT INTO `payees` (`name`, `description`, `idCategory`) VALUES (?, ?, ?);",
-      [payeeName, payeeDescription || "", idCategory]
+      "INSERT INTO `payees` (`name`, `description`, `idSubCategory`) VALUES (?, ?, ?);",
+      [payeeName, payeeDescription || "", idSubCategory]
     );
   }
 
-  async getAll(categoryId: number): Promise<PayeeType[]> {
+  async getAll(idSubCategory: number): Promise<PayeeType[]> {
     const conn: Connection = await this.getConnection();
     const [res] = await conn.execute<IPayee[]>(
-      `select * from payees where idCategory = ?;`,
-      [categoryId]
+      `select p.*, sc.idCategory 
+      from payees p
+      inner join subcategories sc on p.idSubCategory = sc.idSubCategory
+      where p.idSubCategory = ?;`,
+      [idSubCategory]
     );
     return res;
   }
 
-  async get(categoryId: number, payeeId: number): Promise<PayeeDetailType> {
+  async get(idPayee: number): Promise<PayeeDetailType> {
     const conn: Connection = await this.getConnection();
     const [res] = await conn.execute<IPayeeDetail[]>(
-      `select p.*, c.name as catName 
+      `select p.*, sc.idCategory, sc.name as subCatName, c.name as catName 
         from payees p
-	      inner join categories c on p.idCategory = c.idCategory 
-        where p.idCategory = ? and p.id = ?;`,
-      [categoryId, payeeId]
+	      inner join subcategories sc on p.idSubCategory = sc.idSubCategory 
+        inner join categories c on sc.idCategory = c.idCategory 
+        where p.id = ?;`,
+      [idPayee]
     );
     return res[0];
   }

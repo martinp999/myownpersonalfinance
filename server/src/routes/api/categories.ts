@@ -1,10 +1,12 @@
 import express, { Request, Response } from "express";
 import DbFacade from "../../data/dbFacade.js";
 import { logger } from "../../utils/logger.js";
+import { subcategoriesRouter } from "./subcategories.js";
 
 const dbFacade = new DbFacade();
 
 export const categoriesRouter = express.Router();
+categoriesRouter.use("/:categoryId/subcategories", subcategoriesRouter);
 
 categoriesRouter.get("/", async function (req: Request, res: Response) {
   try {
@@ -29,7 +31,7 @@ categoriesRouter.get(
 
 categoriesRouter.post("/", async function (req: Request, res: Response) {
   try {
-    await dbFacade.categories.create({
+    await dbFacade.categories.createCategory({
       name: req.body.name,
       colourPrimary: req.body.colourPrimary,
       colourSecondary: req.body.colourSecondary,
@@ -40,3 +42,23 @@ categoriesRouter.post("/", async function (req: Request, res: Response) {
     res.status(500).send("something went wrong, check logs");
   }
 });
+
+categoriesRouter.post(
+  "/:categoryId/subcategories",
+  async function (req: Request, res: Response) {
+    try {
+      await dbFacade.categories.createSubCategory(
+        Number(req.params.categoryId),
+        {
+          name: req.body.name,
+          colourPrimary: req.body.colourPrimary,
+          colourSecondary: req.body.colourSecondary,
+        }
+      );
+      res.send("success");
+    } catch (error) {
+      logger.error(error);
+      res.status(500).send("something went wrong, check logs");
+    }
+  }
+);

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Button, ListGroup, Stack } from "react-bootstrap";
+import { Breadcrumb, Button, ListGroup, Stack } from "react-bootstrap";
 import { useHref, useParams } from "react-router-dom";
-import PayeeCreateComponent from "../components/PayeeCreate";
+import SubCat_Create_Component from "../components/SubCat_Create";
 
 export default function Category() {
-  const thisHref = useHref();
   const { cat_id } = useParams();
-
   const [category, setCategory] = useState([]);
-  const [payees, setPayees] = useState([]);
-  const [showPayeeCreate, setShowPayeeCreate] = useState(false);
+  const [showSubCatCreate, setShowSubCatCreate] = useState(false);
 
-  const handleClosePayeeCreate = () => setShowPayeeCreate(false);
-  const handleShowPayeeCreate = () => setShowPayeeCreate(true);
+  const handleCloseSubCatCreate = () => setShowSubCatCreate(false);
+  const handleShowSubCatCreate = () => setShowSubCatCreate(true);
+
   const getCategoryDetails = () => {
     const fetchCategory = async () => {
       const response = await fetch("/api/categories/" + cat_id);
@@ -21,39 +19,50 @@ export default function Category() {
     };
     fetchCategory().catch(console.error);
   };
-  const getPayees = () => {
-    const fetchPayees = async () => {
-      const response = await fetch("/api/categories/" + cat_id + "/payees");
-      const p = await response.json();
-      setPayees(p);
-    };
-    fetchPayees().catch(console.error);
-  };
 
   useEffect(getCategoryDetails, []);
-  useEffect(getPayees, []);
 
   return (
     <>
-      <div>{category.name}</div>
-      <PayeeCreateComponent
+      <Breadcrumb>
+        <Breadcrumb.Item href={"/categories"}>Categories</Breadcrumb.Item>
+        <Breadcrumb.Item active>{category.name}</Breadcrumb.Item>
+      </Breadcrumb>
+      <SubCat_Create_Component
         idCategory={cat_id}
-        showPayeeCreate={showPayeeCreate}
-        handleClosePayeeCreate={handleClosePayeeCreate}
-        refreshPayeeList={getPayees}
+        showSubCatCreate={showSubCatCreate}
+        handleCloseSubCatCreate={handleCloseSubCatCreate}
+        refreshSubCatList={getCategoryDetails}
       />
       <Stack direction="horizontal" gap={2}>
-        <Button variant="primary" onClick={handleShowPayeeCreate}>
-          Create Payee
+        <Button variant="primary" onClick={handleShowSubCatCreate}>
+          Create Subcategory
         </Button>
       </Stack>
-      <ListGroup>
-        {payees.map((payee) => (
-          <ListGroup.Item action href={thisHref + "/payees/" + payee.id}>
-            {payee.name}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <SubCategoryList category={category} />
     </>
   );
+}
+
+function SubCategoryList({ category }) {
+  // it seems that React renders prior to useEffect response
+  // then renders again.  On the first render category.subCategories
+  // will be undefined
+  if (category.subCategories) {
+    const thisHref = useHref();
+    return (
+      <ListGroup>
+        {category.subCategories.map((subcat) => {
+          return (
+            <ListGroup.Item
+              action
+              href={thisHref + "/subcategories/" + subcat.idSubCategory}
+            >
+              {subcat.name}
+            </ListGroup.Item>
+          );
+        })}
+      </ListGroup>
+    );
+  }
 }

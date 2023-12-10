@@ -3,6 +3,8 @@ import Transactions from "./transactions.js";
 import Accounts from "./accounts.js";
 import Categories from "./categories.js";
 import Payees from "./payees.js";
+import Patterns from "./patterns.js";
+import Subcategories from "./subcategories.js";
 
 export default class DbFacade {
   private _connection: Connection | null = null;
@@ -33,5 +35,13 @@ export default class DbFacade {
 
   get payees() {
     return new Payees(this._getConnection, this);
+  }
+
+  get patterns() {
+    return new Patterns(this._getConnection, this);
+  }
+
+  get subcategories() {
+    return new Subcategories(this._getConnection, this);
   }
 }

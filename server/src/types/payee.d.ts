@@ -5,10 +5,12 @@ export type PayeeType = {
   name: string;
   description: string;
   idCategory: number;
+  idSubCategory: number;
 };
 
 export type PayeeDetailType = PayeeType & {
   catName: string;
+  subCatName: string;
 };
 
 export interface IPayee extends RowDataPacket {
@@ -16,8 +18,10 @@ export interface IPayee extends RowDataPacket {
   name: string;
   description: string;
   idCategory: number;
+  idSubCategory: number;
 }
 
 export interface IPayeeDetail extends IPayee {
   catName: string;
+  subCatName: string;
 }
